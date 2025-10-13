@@ -1,0 +1,1861 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Préparation TCF Canada - Accueil</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Body and Container Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #F8F9FA;
+            color: #343A40;
+            overflow-x: hidden; /* Prevent horizontal scroll when sidebar is open */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px
+        }
+
+        .main-header {
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, .1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            padding: 10px 0
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 15px
+        }
+
+        .navbar-logo img {
+            height: 50px;
+            vertical-align: middle
+        }
+
+        /* Desktop Menu */
+        .navbar-links ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center
+        }
+
+        .navbar-links li {
+            margin-left: 25px
+        }
+
+        .navbar-links a {
+            text-decoration: none;
+            color: #343A40;
+            font-weight: 500;
+            transition: color .3s ease;
+            display: flex;
+            align-items: center
+        }
+
+        .navbar-links a i {
+            margin-right: 8px;
+            color: #2196F3
+        }
+
+        .navbar-links a:hover {
+            color: #2196F3
+        }
+
+        /* Hamburger Menu Icon */
+        .hamburger-icon {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger-icon .line {
+            width: 100%;
+            height: 3px;
+            background-color: #343A40;
+            border-radius: 5px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Animation for X icon */
+        .hamburger-icon.active .line-1 {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        .hamburger-icon.active .line-2 {
+            opacity: 0;
+        }
+        .hamburger-icon.active .line-3 {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        /* Mobile Sidebar Menu */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 300px; /* Adjust width as needed */
+            background-color: white;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+            z-index: 1000;
+            padding-top: 80px;
+        }
+
+        .sidebar.open {
+            transform: translateX(0);
+        }
+
+        .sidebar-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-links a {
+            padding: 15px 25px;
+            display: block;
+            text-decoration: none;
+            color: #343A40;
+            font-weight: 500;
+            border-bottom: 1px solid #eee;
+        }
+
+        .sidebar-links a:hover {
+            background-color: #f0f0f0;
+            color: #2196F3;
+        }
+        
+        .sidebar-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding: 25px;
+        }
+
+        /* Semi-transparent overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+
+        .overlay.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Other styles remain the same */
+        .btn {
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all .3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            cursor: pointer
+        }
+
+        .btn-primary {
+            background-color: #2196F3;
+            color: white !important
+        }
+
+        .btn-primary:hover {
+            background-color: #1976D2;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, .2)
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 1px solid #343A40;
+            color: #343A40 !important
+        }
+
+        .btn-secondary:hover {
+            background-color: #343A40;
+            color: white !important;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, .2)
+        }
+
+        .header-spacer {
+            height: 70px;
+            width: 100%
+        }
+
+        .sub-navbar {
+            background-color: #343A40;
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, .1)
+        }
+        
+        .sub-navbar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .sub-navbar li {
+            position: relative;
+        }
+
+        .sub-navbar-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background-color .3s ease, color .3s ease;
+            display: flex;
+            align-items: center
+        }
+
+        .sub-navbar-links a i {
+            margin-right: 8px;
+            color: #FFC107
+        }
+
+        .sub-navbar-links a:hover {
+            background-color: #2196F3;
+            color: white
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #343A40;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+            padding: 12px;
+            top: calc(100% + 10px);
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 8px;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            display: block;
+            white-space: nowrap;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: #2196F3;
+            border-radius: 4px;
+        }
+
+        .hero {
+            background-image: url('opal-hero.png');
+            position: relative;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+            padding-bottom: 50px;
+            background-size: cover;
+            background-position: center
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, .5);
+            z-index: 0
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 1
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, .6)
+        }
+
+        .hero h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            font-weight: 300;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, .5)
+        }
+
+        .hero .btn {
+            padding: 18px 40px;
+            animation: pulse 2s infinite;
+            background-color: #FF9800;
+            color: white
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1)
+            }
+
+            50% {
+                transform: scale(1.03)
+            }
+
+            100% {
+                transform: scale(1)
+            }
+        }
+
+        section {
+            padding: 80px 0;
+            text-align: center;
+            background-color: #F8F9FA
+        }
+
+        .formation,
+        .pricing {
+            background-color: white
+        }
+
+        .features,
+        .contact,
+        .advantages {
+            background-color: #E8F5E9
+        }
+
+        .section-title {
+            margin-bottom: 50px
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #2196F3;
+            margin-bottom: 15px
+        }
+
+        .section-title h2 i {
+            margin-right: 10px;
+            color: #FFC107
+        }
+
+        .section-title hr {
+            width: 80px;
+            border: none;
+            border-top: 3px solid #FF9800;
+            margin: 0 auto
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto
+        }
+
+        .formation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px
+        }
+
+        .formation-card {
+            background-color: #f0f8ff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, .08);
+            transition: transform .3s ease, box-shadow .3s ease
+        }
+
+        .formation-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, .15)
+        }
+
+        .formation-card .icon-circle {
+            width: 70px;
+            height: 70px;
+            background-color: #2196F3;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 2.5rem
+        }
+        
+        .formation-card h3 {
+            font-size: 1.5rem;
+            color: #343A40;
+            margin-bottom: 15px
+        }
+        
+        .formation-card p {
+            color: #666;
+            font-size: 1rem
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px
+        }
+        
+        .feature-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, .08);
+            transition: transform .3s ease, box-shadow .3s ease;
+            text-align: left
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, .15)
+        }
+        
+        .feature-card .icon-circle {
+            width: 60px;
+            height: 60px;
+            background-color: #4CAF50;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            color: white;
+            font-size: 2rem
+        }
+
+        .feature-card h3 {
+            font-size: 1.4rem;
+            color: #343A40;
+            margin-bottom: 10px
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: .95rem
+        }
+
+        .pricing .subtitle {
+            margin-bottom: 60px
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px
+        }
+
+        .plan-card {
+            background-color: #f8f8f8;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, .08);
+            transition: transform .3s ease, box-shadow .3s ease, border .3s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center
+        }
+
+        .plan-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, .15)
+        }
+
+        .plan-card.popular {
+            border: 3px solid #FFC107;
+            background-color: #fffde7
+        }
+        
+        .popular-badge {
+            background-color: #2196F3;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: .9rem;
+            font-weight: 700;
+            transform: rotate(10deg);
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, .2)
+        }
+        
+        .plan-header {
+            width: 100%
+        }
+        
+        .plan-header h4 {
+            font-size: 1.1rem;
+            color: #777;
+            margin-bottom: 10px
+        }
+
+        .plan-header h3 {
+            font-size: 2rem;
+            color: #2196F3;
+            margin-bottom: 20px
+        }
+
+        .plan-header .price {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #343A40;
+            margin-bottom: 20px
+        }
+        
+        .usd-price {
+            font-size: 1.2rem;
+            color: #666;
+            font-weight: 400
+        }
+
+        .features-list {
+            width: 100%;
+            margin-top: 10px;
+            margin-bottom: 30px
+        }
+
+        .features-list ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: left
+        }
+
+        .features-list li {
+            margin-bottom: 10px;
+            color: #555;
+            font-size: 1rem;
+            position: relative;
+            padding-left: 25px
+        }
+        
+        .features-list li::before {
+            content: "\f00c";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            color: #4CAF50;
+            position: absolute;
+            left: 0;
+            top: 2px
+        }
+        
+        .pricing .btn {
+            width: 80%;
+            margin-top: auto
+        }
+        
+        .bottom-cta {
+            background-color: #FF9800;
+            color: white;
+            padding: 25px 30px;
+            border-radius: 10px;
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, .1)
+        }
+
+        .extra-info p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 10px
+        }
+        
+        .contact-form-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            text-align: left
+        }
+        
+        .contact-form-card,
+        .info-card {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, .08)
+        }
+
+        .contact-form-card h3,
+        .info-card h3 {
+            color: #2196F3;
+            font-size: 1.8rem;
+            margin-bottom: 25px
+        }
+
+        .form-group {
+            margin-bottom: 20px
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #343A40
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"],
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            color: #343A40;
+            transition: border-color .3s ease
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #2196F3;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(33, 150, 243, .2)
+        }
+
+        .contact-form-card .btn {
+            width: auto;
+            padding: 12px 30px;
+            background-color: #2196F3;
+            color: white
+        }
+
+        .info-card h3 {
+            color: #343A40
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            color: #555;
+            font-size: 1.1rem
+        }
+
+        .info-item i {
+            color: #FFC107;
+            margin-right: 15px;
+            font-size: 1.5rem
+        }
+
+        .qr-code-section {
+            margin-top: 30px;
+            text-align: center
+        }
+
+        .qr-code-section h4 {
+            color: #343A40;
+            margin-bottom: 15px;
+            font-size: 1.3rem
+        }
+
+        .qr-code-section img {
+            max-width: 150px;
+            height: auto;
+            border: 5px solid #4CAF50;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, .1)
+        }
+
+        .footer {
+            background-color: #343A40;
+            color: white;
+            padding: 60px 0 20px;
+            font-size: .95rem
+        }
+
+        .footer-main {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, .1);
+            text-align: left
+        }
+
+        .footer-column h4 {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            color: #FFC107
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px
+        }
+
+        .footer-column ul li a {
+            color: rgba(255, 255, 255, .8);
+            text-decoration: none;
+            transition: color .3s ease;
+            display: flex;
+            align-items: center
+        }
+
+        .footer-column ul li a i {
+            margin-right: 10px;
+            color: #2196F3
+        }
+
+        .footer-column ul li a:hover {
+            color: #2196F3
+        }
+
+        .footer-social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px
+        }
+
+        .footer-social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color .3s ease
+        }
+
+        .footer-social-icons a:hover {
+            color: #2196F3
+        }
+
+        .footer-payments {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+            flex-wrap: wrap
+        }
+
+        .footer-payments img {
+            height: 40px;
+            width: auto;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, .9);
+            padding: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, .2)
+        }
+
+        .footer-bottom {
+            padding-top: 20px;
+            text-align: center;
+            color: rgba(255, 255, 255, .6)
+        }
+
+        @media (max-width:1024px) {
+            .navbar-links {
+                display: none;
+            }
+
+            .hamburger-icon {
+                display: flex;
+            }
+
+            .sub-navbar {
+                top: unset;
+                position: static
+            }
+
+            .sub-navbar-links {
+                flex-wrap: wrap;
+                justify-content: center
+            }
+
+            .sub-navbar-links a {
+                padding: 8px 10px
+            }
+        }
+
+        @media (max-width:768px) {
+            .sub-navbar {
+                top: unset;
+                position: static
+            }
+
+            .sub-navbar-links {
+                flex-wrap: wrap;
+                justify-content: center
+            }
+
+            .sub-navbar-links a {
+                padding: 8px 10px
+            }
+        }
+
+        @media (max-width:480px) {
+            .hero h1 {
+                font-size: 2rem
+            }
+
+            .hero h2 {
+                font-size: 1.1rem
+            }
+
+            .navbar-logo img {
+                height: 40px
+            }
+        }
+        
+        .advantages .feature-card {
+            text-align: center;
+        }
+
+        .advantages .feature-card .icon-circle {
+            margin: 0 auto 20px;
+        }
+        
+        .services-section {
+            padding: 80px 0;
+            background-color: white;
+            position: relative;
+        }
+
+        /* Container for the horizontal carousel with arrows */
+        .services-carousel-container {
+            position: relative;
+            margin: 0 auto;
+            max-width: 900px; /* Adjust as needed */
+        }
+        
+        .services-carousel {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth;
+            white-space: nowrap;
+        }
+        
+        .services-carousel-item {
+            flex-shrink: 0;
+            width: 100%;
+            display: inline-block;
+            vertical-align: top;
+            padding: 0 15px;
+            scroll-snap-align: center;
+        }
+        
+        /* Custom scrollbar for horizontal carousel */
+        .services-carousel::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .services-carousel::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 4px;
+        }
+
+        .services-carousel::-webkit-scrollbar-thumb {
+            background-color: #94a3b8;
+            border-radius: 4px;
+            border: 2px solid #f1f5f9;
+        }
+
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(33, 150, 243, 0.8);
+            color: white;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            z-index: 10;
+            transition: all 0.3s ease;
+            opacity: 1;
+        }
+        
+        .carousel-arrow:hover {
+            background-color: #2196F3;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .carousel-arrow.left {
+            left: -20px;
+        }
+
+        .carousel-arrow.right {
+            right: -20px;
+        }
+        
+        .carousel-arrow.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Vertical Services Section Styles */
+        .vertical-services-container {
+            margin-top: 60px;
+            position: relative;
+            max-height: 550px; /* Adjusted height */
+        }
+        
+        .vertical-services-list {
+            display: block;
+            overflow-y: auto;
+            scroll-snap-type: y mandatory;
+            -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth;
+        }
+
+        .vertical-services-list::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .vertical-services-list::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 4px;
+        }
+
+        .vertical-services-list::-webkit-scrollbar-thumb {
+            background-color: #94a3b8;
+            border-radius: 4px;
+            border: 2px solid #f1f5f9;
+        }
+
+        .vertical-service-card {
+            background-color: #f0f8ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, .08);
+            scroll-snap-align: start;
+        }
+
+        .vertical-arrow-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .vertical-arrow {
+            background-color: rgba(33, 150, 243, 0.8);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            margin: 5px 0;
+            transition: all 0.3s ease;
+            opacity: 1;
+        }
+
+        .vertical-arrow:hover {
+            background-color: #2196F3;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .vertical-arrow.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .service-card {
+            background-color: #f0f8ff;
+            height: 28rem;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            white-space: normal;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            color: #343A40;
+            text-align: center;
+            padding: 1.5rem 1rem;
+            background-color: #2196F3;
+            color: white;
+            font-weight: 600;
+            border-bottom: 4px solid #FFC107;
+            border-radius: 10px 10px 0 0;
+        }
+        
+        .card-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            flex-grow: 1; /* Allow content to grow and fill the card */
+        }
+        
+        .card-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .card-content::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 4px;
+        }
+
+        .card-content::-webkit-scrollbar-thumb {
+            background-color: #94a3b8;
+            border-radius: 4px;
+            border: 2px solid #f1f5f9;
+        }
+        
+        .service-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .service-card li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .service-card li::before {
+            content: "\f00c";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            color: #4CAF50;
+            position: absolute;
+            left: 0;
+            top: 2px;
+        }
+
+        .service-card li a {
+            text-decoration: none;
+            color: #2196F3;
+            transition: color 0.2s ease;
+        }
+
+        .service-card li a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="main-header">
+        <nav class="navbar">
+            <div class="navbar-logo">
+                <img src="opal-logo.jpg" alt="OPAL Logo">
+            </div>
+            <!-- Desktop Menu -->
+            <div class="navbar-links">
+                <ul>
+                    <li><a href="#formation-section"><i class="fas fa-graduation-cap"></i> Formations</a></li>
+                    <li><a href="#advantages-section"><i class="fas fa-check-circle"></i> Avantages</a></li>
+                    <li><a href="#services-section"><i class="fas fa-cubes"></i> Services</a></li>
+                    <li><a href="#pricing-section"><i class="fas fa-euro-sign"></i> Tarifs</a></li>
+                    <li><a href="#contact-section"><i class="fas fa-envelope"></i> Contact</a></li>
+                    <li><a href="#" class="btn btn-secondary" style="color: #343A40;"><i class="fas fa-sign-in-alt"></i> Connexion</a></li>
+                    <li><a href="#" class="btn btn-secondary" style="color: white;"><i class="fas fa-user-plus"></i> Inscription</a></li>
+                </ul>
+            </div>
+            <!-- Hamburger Menu for Mobile -->
+            <div id="hamburger-menu" class="hamburger-icon">
+                <div class="line line-1"></div>
+                <div class="line line-2"></div>
+                <div class="line line-3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Sidebar -->
+    <div id="sidebar" class="sidebar">
+        <ul class="sidebar-links">
+            <li><a href="#formation-section"><i class="fas fa-graduation-cap"></i> Formations</a></li>
+            <li><a href="#advantages-section"><i class="fas fa-check-circle"></i> Avantages</a></li>
+            <li><a href="#services-section"><i class="fas fa-cubes"></i> Services</a></li>
+            <li><a href="#pricing-section"><i class="fas fa-euro-sign"></i> Tarifs</a></li>
+            <li><a href="#contact-section"><i class="fas fa-envelope"></i> Contact</a></li>
+        </ul>
+        <div class="sidebar-buttons">
+            <a href="#" class="btn btn-secondary" style="color: #343A40;"><i class="fas fa-sign-in-alt"></i> Connexion</a>
+            <a href="#" class="btn btn-primary"><i class="fas fa-user-plus"></i> Inscription</a>
+        </div>
+    </div>
+    <!-- Overlay -->
+    <div id="sidebar-overlay" class="overlay"></div>
+
+    <div class="header-spacer"></div>
+
+    <nav class="sub-navbar">
+        <div class="container" style="display: flex; justify-content: center; align-items: center;">
+            <ul class="sub-navbar-links">
+                <li><a href="#"><i class="fas fa-pen-alt"></i> EXPRESSION ÉCRITE</a></li>
+                <li><a href="#"><i class="fas fa-microphone-alt"></i> EXPRESSION ORALE</a></li>
+                <li><a href="#"><i class="fas fa-book-open"></i> COMPRÉHENSION ÉCRITE</a></li>
+                <li><a href="#"><i class="fas fa-headphones"></i> COMPRÉHENSION ORALE</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" id="activites-dropdown"><i class="fas fa-chalkboard-teacher"></i> ACTIVITES <i class="fas fa-chevron-down fa-xs"></i></a>
+                    <div class="dropdown-content" id="activites-menu">
+                        <a href="#">ACTIVITES EN CO</a>
+                        <a href="#">ACTIVITES EN CE</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" id="methodologies-dropdown"><i class="fas fa-book-reader"></i> METHODOLOGIES <i class="fas fa-chevron-down fa-xs"></i></a>
+                    <div class="dropdown-content" id="methodologies-menu">
+                        <a href="#">METHODOLOGIES EN CO</a>
+                        <a href="#">METHODOLOGIES EN CE</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="overlay"></div>
+        <div class="container">
+            <h1>Préparez-vous au TCF en toute confiance</h1>
+            <h2>Une plateforme complète pour maîtriser toutes les épreuves du Test de Connaissance du Français</h2>
+            <a href="#pricing-section" class="btn animated-scroll-in">Commencez votre préparation</a>
+        </div>
+    </header>
+
+    <section id="formation-section" class="formation">
+        <div class="container animated-scroll-in">
+            <div class="section-title">
+                <h2><i class="fas fa-graduation-cap"></i> Préparation au TCF Canada</h2>
+                <hr>
+            </div>
+            <p class="subtitle">
+                Nos formations sont conçues pour vous préparer efficacement à chaque épreuve du TCF Canada.
+                Sélectionnez le module sur lequel vous souhaitez vous concentrer.
+            </p>
+            <div class="formation-grid">
+                <div class="formation-card animated-scroll-in" style="transition-delay: 0.1s;">
+                    <div class="icon-circle">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3>Compréhension Écrite</h3>
+                    <p>Développez votre capacité à comprendre des textes authentiques et variés.</p>
+                </div>
+                <div class="formation-card animated-scroll-in" style="transition-delay: 0.2s;">
+                    <div class="icon-circle">
+                        <i class="fas fa-headphones"></i>
+                    </div>
+                    <h3>Compréhension Orale</h3>
+                    <p>Améliorez votre écoute avec des exercices basés sur des situations réelles.</p>
+                </div>
+                <div class="formation-card animated-scroll-in" style="transition-delay: 0.3s;">
+                    <div class="icon-circle">
+                        <i class="fas fa-pen-alt"></i>
+                    </div>
+                    <h3>Expression Écrite</h3>
+                    <p>Apprenez à rédiger des textes clairs et structurés pour toutes les tâches.</p>
+                </div>
+                <div class="formation-card animated-scroll-in" style="transition-delay: 0.4s;">
+                    <div class="icon-circle">
+                        <i class="fas fa-microphone-alt"></i>
+                    </div>
+                    <h3>Expression Orale</h3>
+                    <p>Préparez-vous à vous exprimer de manière fluide et cohérente à l'oral.</p>
+                </div>
+            </div>
+            <a href="#" class="btn btn-primary animated-scroll-in" style="transition-delay: 0.5s;">
+                <i class="fas fa-chalkboard-teacher"></i> Accéder à l'ensemble du programme
+            </a>
+        </div>
+    </section>
+
+    <!-- New Advantages Section Starts Here -->
+    <section id="advantages-section" class="advantages">
+        <div class="container animated-scroll-in">
+            <div class="section-title">
+                <h2><i class="fas fa-award"></i> Pourquoi nous choisir ?</h2>
+                <hr>
+            </div>
+            <p class="subtitle">
+                Notre plateforme est conçue pour votre réussite, avec des fonctionnalités qui font la différence.
+            </p>
+            <div class="features-grid">
+                <div class="feature-card animated-scroll-in" style="transition-delay: 0.1s;">
+                    <div class="icon-circle">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3>Professeurs Qualifiés</h3>
+                    <p>Bénéficiez de l'expertise de professeurs expérimentés et certifiés, spécialisés dans la préparation au TCF.</p>
+                </div>
+                <div class="feature-card animated-scroll-in" style="transition-delay: 0.2s;">
+                    <div class="icon-circle">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h3>Contenu Récents</h3>
+                    <p>Accédez aux dernières questions du TCF, garantissant une préparation optimale et à jour.</p>
+                </div>
+                <div class="feature-card animated-scroll-in" style="transition-delay: 0.3s;">
+                    <div class="icon-circle">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3>Suivi Personnalisé</h3>
+                    <p>Obtenez un suivi détaillé de vos progrès et des conseils pour améliorer vos compétences spécifiques.</p>
+                </div>
+                <div class="feature-card animated-scroll-in" style="transition-delay: 0.4s;">
+                    <div class="icon-circle">
+                        <i class="fas fa-comment-dots"></i>
+                    </div>
+                    <h3>Communauté Dynamique</h3>
+                    <p>Échangez avec d'autres candidats et partagez vos expériences pour un apprentissage collaboratif.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- New Advantages Section Ends Here -->
+
+    <!-- Updated Services Section Starts Here -->
+    <section id="services-section" class="services-section">
+        <div class="container animated-scroll-in">
+            <div class="section-title">
+                <h2><i class="fas fa-cubes"></i> Nos Services</h2>
+                <hr>
+            </div>
+            <p class="subtitle">
+                Choisissez le service qui correspond le mieux à vos besoins pour une préparation sur mesure.
+            </p>
+            
+            <div class="services-carousel-container">
+                <!-- Left and Right Arrows -->
+                <button id="left-arrow" class="carousel-arrow left"><i class="fas fa-chevron-left"></i></button>
+                <button id="right-arrow" class="carousel-arrow right"><i class="fas fa-chevron-right"></i></button>
+
+                <!-- Horizontal Scrolling Container -->
+                <div id="services-carousel" class="services-carousel">
+                    <!-- Service Card 1: FREE -->
+                    <div class="services-carousel-item">
+                        <div class="service-card">
+                            <h3>FREE</h3>
+                            <div class="card-content">
+                                <div>
+                                    <h4 class="font-semibold text-lg mb-2 text-left">Compréhension Écrite</h4>
+                                    <ul>
+                                        <li><a href="#">Compréhension Écrite</a></li>
+                                        <li><a href="#">Compréhension Écrite</a></li>
+                                        <li><a href="#">Compréhension Écrite</a></li>
+                                        <li><a href="#">Compréhension Écrite</a></li>
+                                        <li><a href="#">Compréhension Écrite</a></li>
+                                        <li><a href="#">Compréhension Écrite</a></li>
+                                        <li><a href="#">Compréhension Écrite</a></li>
+                                        <li><a href="#">Compréhension Écrite</a></li>
+                                        <li><a href="#">Compréhension Écrite</a></li>
+                                        <li><a href="#">Compréhension Écrite</a></li>
+                                        <li><a href="#">Compréhension Écrite</a></li>
+                                        <li><a href="#">Compréhension Écrite</a></li>
+                                        <li><a href="#">Compréhension Écrite</a></li>
+                                        <li><a href="#">Compréhension Écrite</a></li>
+                                        <li><a href="#">Compréhension Écrite</a></li>
+                                        <li><a href="#">Compréhension Écrite</a></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-lg mb-2 text-left">Compréhension Orale</h4>
+                                    <ul>
+                                        <li><a href="#">Compréhension Orale</a></li>
+                                        <li><a href="#">Compréhension Orale</a></li>
+                                        <li><a href="#">Compréhension Orale</a></li>
+                                        <li><a href="#">Compréhension Orale</a></li>
+                                        <li><a href="#">Compréhension Orale</a></li>
+                                        <li><a href="#">Compréhension Orale</a></li>
+                                        <li><a href="#">Compréhension Orale</a></li>
+                                        <li><a href="#">Compréhension Orale</a></li>
+                                        <li><a href="#">Compréhension Orale</a></li>
+                                        <li><a href="#">Compréhension Orale</a></li>
+                                        <li><a href="#">Compréhension Orale</a></li>
+                                        <li><a href="#">Compréhension Orale</a></li>
+                                        <li><a href="#">Compréhension Orale</a></li>
+                                        <li><a href="#">Compréhension Orale</a></li>
+                                        <li><a href="#">Compréhension Orale</a></li>
+                                        <li><a href="#">Compréhension Orale</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <!-- Service Card 2: ABONNES -->
+                    <div class="services-carousel-item">
+                        <div class="service-card">
+                            <h3>ABONNES</h3>
+                            <div class="card-content">
+                                <div>
+                                    <h4 class="font-semibold text-lg mb-2 text-left">Compréhension Écrite</h4>
+                                    <ul>
+                                        <li><a href="#">Compréhension Écrite</a></li>
+                                        <li><a href="#">Compréhension Écrite</a></li>
+                                        <li><a href="#">Compréhension Écrite</a></li>
+                                        <li><a href="#">Compréhension Écrite</a></li>
+                                        <li><a href="#">Compréhension Écrite</a></li>
+                                        <li><a href="#">Compréhension Écrite</a></li>
+                                        <li><a href="#">Compréhension Écrite</a></li>
+                                        <li><a href="#">Compréhension Écrite</a></li>
+                                        <li><a href="#">Compréhension Écrite</a></li>
+                                        <li><a href="#">Compréhension Écrite</a></li>
+                                        <li><a href="#">Compréhension Écrite</a></li>
+                                        <li><a href="#">Compréhension Écrite</a></li>
+                                        <li><a href="#">Compréhension Écrite</a></li>
+                                        <li><a href="#">Compréhension Écrite</a></li>
+                                        <li><a href="#">Compréhension Écrite</a></li>
+                                        <li><a href="#">Compréhension Écrite</a></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-lg mb-2 text-left">Compréhension Orale</h4>
+                                    <ul>
+                                        <li><a href="#">Compréhension Orale</a></li>
+                                        <li><a href="#">Compréhension Orale</a></li>
+                                        <li><a href="#">Compréhension Orale</a></li>
+                                        <li><a href="#">Compréhension Orale</a></li>
+                                        <li><a href="#">Compréhension Orale</a></li>
+                                        <li><a href="#">Compréhension Orale</a></li>
+                                        <li><a href="#">Compréhension Orale</a></li>
+                                        <li><a href="#">Compréhension Orale</a></li>
+                                        <li><a href="#">Compréhension Orale</a></li>
+                                        <li><a href="#">Compréhension Orale</a></li>
+                                        <li><a href="#">Compréhension Orale</a></li>
+                                        <li><a href="#">Compréhension Orale</a></li>
+                                        <li><a href="#">Compréhension Orale</a></li>
+                                        <li><a href="#">Compréhension Orale</a></li>
+                                        <li><a href="#">Compréhension Orale</a></li>
+                                        <li><a href="#">Compréhension Orale</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <!-- Service Card 3: ACTIVITES BY OPAL -->
+                    <div class="services-carousel-item">
+                        <div class="service-card">
+                            <h3>ACTIVITES BY OPAL</h3>
+                            <div class="card-content">
+                                <div>
+                                    <h4 class="font-semibold text-lg mb-2 text-left">Compréhension Écrite</h4>
+                                    <ul>
+                                        <li><a href="#">Compréhension Écrite</a></li>
+                                        <li><a href="#">Compréhension Écrite</a></li>
+                                        <li><a href="#">Compréhension Écrite</a></li>
+                                        <li><a href="#">Compréhension Écrite</a></li>
+                                        <li><a href="#">Compréhension Écrite</a></li>
+                                        <li><a href="#">Compréhension Écrite</a></li>
+                                        <li><a href="#">Compréhension Écrite</a></li>
+                                        <li><a href="#">Compréhension Écrite</a></li>
+                                        <li><a href="#">Compréhension Écrite</a></li>
+                                        <li><a href="#">Compréhension Écrite</a></li>
+                                        <li><a href="#">Compréhension Écrite</a></li>
+                                        <li><a href="#">Compréhension Écrite</a></li>
+                                        <li><a href="#">Compréhension Écrite</a></li>
+                                        <li><a href="#">Compréhension Écrite</a></li>
+                                        <li><a href="#">Compréhension Écrite</a></li>
+                                        <li><a href="#">Compréhension Écrite</a></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-lg mb-2 text-left">Compréhension Orale</h4>
+                                    <ul>
+                                        <li><a href="#">Compréhension Orale</a></li>
+                                        <li><a href="#">Compréhension Orale</a></li>
+                                        <li><a href="#">Compréhension Orale</a></li>
+                                        <li><a href="#">Compréhension Orale</a></li>
+                                        <li><a href="#">Compréhension Orale</a></li>
+                                        <li><a href="#">Compréhension Orale</a></li>
+                                        <li><a href="#">Compréhension Orale</a></li>
+                                        <li><a href="#">Compréhension Orale</a></li>
+                                        <li><a href="#">Compréhension Orale</a></li>
+                                        <li><a href="#">Compréhension Orale</a></li>
+                                        <li><a href="#">Compréhension Orale</a></li>
+                                        <li><a href="#">Compréhension Orale</a></li>
+                                        <li><a href="#">Compréhension Orale</a></li>
+                                        <li><a href="#">Compréhension Orale</a></li>
+                                        <li><a href="#">Compréhension Orale</a></li>
+                                        <li><a href="#">Compréhension Orale</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Vertical Services Section -->
+            <div class="vertical-services-container">
+                <div class="vertical-services-list" id="vertical-scroll">
+                    <!-- Example cards, you can add more -->
+                    <div class="vertical-service-card animated-scroll-in">
+                        <h4>Test de simulation de compréhension écrite</h4>
+                        <p>Simulez l'épreuve de compréhension écrite du TCF dans les conditions réelles de l'examen. Un chronomètre est disponible pour vous aider à mieux gérer votre temps.</p>
+                    </div>
+                    <div class="vertical-service-card animated-scroll-in">
+                        <h4>Tests de compréhension orale</h4>
+                        <p>Plongez-vous dans des exercices audio variés pour entraîner votre oreille et améliorer votre capacité à comprendre la langue française parlée.</p>
+                    </div>
+                    <div class="vertical-service-card animated-scroll-in">
+                        <h4>Sujets d'expression écrite</h4>
+                        <p>Pratiquez la rédaction sur des sujets d'actualité et des thèmes variés pour vous préparer à l'épreuve d'expression écrite du TCF.</p>
+                    </div>
+                    <div class="vertical-service-card animated-scroll-in">
+                        <h4>Sujets d'expression orale</h4>
+                        <p>Enregistrez-vous en répondant à des sujets d'expression orale pour améliorer votre fluidité et votre prononciation. Recevez des conseils personnalisés.</p>
+                    </div>
+                </div>
+                
+                <div class="vertical-arrow-container">
+                    <button id="up-arrow" class="vertical-arrow"><i class="fas fa-chevron-up"></i></button>
+                    <button id="down-arrow" class="vertical-arrow"><i class="fas fa-chevron-down"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Updated Services Section Ends Here -->
+
+    <section id="pricing-section" class="pricing">
+        <div class="container animated-scroll-in">
+            <div class="section-title">
+                <h2><i class="fas fa-trophy"></i> Obtenez tranquillement vos 4C2</h2>
+                <hr>
+            </div>
+            <p class="subtitle">Préparez efficacement votre TCF Canada.</p>
+            <div class="pricing-grid">
+                <div class="plan-card animated-scroll-in" style="transition-delay: 0.1s;">
+                    <div class="plan-header">
+                        <h4>1 Semaine</h4>
+                        <h3>Découverte</h3>
+                        <div class="price">
+                            5.000F.CFA<br>
+                            <span class="usd-price">~12$</span>
+                        </div>
+                    </div>
+                    <div class="features-list">
+                        <ul>
+                            <li>10 séries récentes de compréhension orale & écrite.</li>
+                            <li>Plus de 10 combinaisons de sujets récents d'expression orale & écrite.</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="btn btn-primary">Acheter</a>
+                </div>
+                <div class="plan-card animated-scroll-in" style="transition-delay: 0.2s;">
+                    <div class="plan-header">
+                        <h4>2 Semaines</h4>
+                        <h3>Bronze</h3>
+                        <div class="price">
+                            7.000F.CFA<br>
+                            <span class="usd-price">~17$</span>
+                        </div>
+                    </div>
+                    <div class="features-list">
+                        <ul>
+                            <li>10 séries récentes de compréhension orale & écrite.</li>
+                            <li>Plus de 10 combinaisons de sujets récents d'expression orale & écrite.</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="btn btn-primary">Acheter</a>
+                </div>
+                <div class="plan-card animated-scroll-in" style="transition-delay: 0.3s;">
+                    <div class="plan-header">
+                        <h4>1 Mois</h4>
+                        <h3>Silver</h3>
+                        <div class="price">
+                            10.000F.CFA<br>
+                            <span class="usd-price">~25$</span>
+                        </div>
+                    </div>
+                    <div class="features-list">
+                        <ul>
+                            <li>15 séries récentes de compréhension orale & écrite.</li>
+                            <li>Plus de 15 combinaisons de sujets récents d'expression orale & écrite.</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="btn btn-primary">Acheter</a>
+                </div>
+                <div class="plan-card popular animated-scroll-in" style="transition-delay: 0.4s;">
+                    <span class="popular-badge">Plus Populaire</span>
+                    <div class="plan-header">
+                        <h4>2 Mois</h4>
+                        <h3>Gold</h3>
+                        <div class="price">
+                            15.000F.CFA<br>
+                            <span class="usd-price">~36$</span>
+                        </div>
+                    </div>
+                    <div class="features-list">
+                        <ul>
+                            <li>18 séries récentes de compréhension orale & écrite.</li>
+                            <li>Plus de 18 combinaisons de sujets récents d'expression orale & écrite.</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="btn btn-primary">Acheter</a>
+                </div>
+                <div class="plan-card animated-scroll-in" style="transition-delay: 0.5s;">
+                    <div class="plan-header">
+                        <h4>3 Mois</h4>
+                        <h3>Platinum</h3>
+                        <div class="price">
+                            20.000F.CFA<br>
+                            <span class="usd-price">~48$</span>
+                        </div>
+                    </div>
+                    <div class="features-list">
+                        <ul>
+                            <li>18 séries récentes de compréhension orale & écrite.</li>
+                            <li>Plus de 18 combinaisons de sujets récents d'expression orale & écrite.</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="btn btn-primary">Acheter</a>
+                </div>
+            </div>
+            <div class="bottom-cta animated-scroll-in" style="transition-delay: 0.6s;">
+                <h3>PLUS DE 30 EXERCICES D'EXPRESSION ÉCRITE ET D'EXPRESSION ORALE RÉCENTS, CORRIGÉS.</h3>
+            </div>
+            <div class="extra-info animated-scroll-in" style="transition-delay: 0.7s;">
+                <p>LES ACTIVITÉS PAR NIVEAU DE DIFFICULTÉ (B1, B2, C1 ET C2)</p>
+                <p>POSSIBILITÉS DE NÉGOCIER POUR D'AUTRES DURÉES !</p>
+                <p>(+237) 620 174 450 - 640 075 198 - 650 323 013</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact-section" class="contact">
+        <div class="container animated-scroll-in">
+            <div class="section-title">
+                <h2><i class="fas fa-comments"></i> Contactez-nous</h2>
+                <hr>
+            </div>
+            <p class="subtitle">
+                Pour toute question ou pour rejoindre nos communautés d'apprentissage, contactez-nous.
+            </p>
+            <div class="contact-form-container animated-scroll-in">
+                <div class="contact-form-card">
+                    <h3>Contactez-nous</h3>
+                    <form action="#" method="post">
+                        <div class="form-group">
+                            <label for="name">Prénom</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Téléphone</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Comment pouvons-nous vous aider ?</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Envoyer</button>
+                    </form>
+                </div>
+                <div class="info-card">
+                    <h3>INFO :</h3>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>your.email@tcfcanada.com</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+1 (506) 253-6067</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+(212) 6 56 34 10 05</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+1 (506) 253-6067</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+(212) 6 56 34 10 05</span>
+                    </div>
+                    <div class="qr-code-section">
+                        <h4>Rejoignez le groupe OPAL</h4>
+                        <a href="https://wa.me/your-phone-number-opal" target="_blank" rel="noopener noreferrer">
+                            <img src="opal-qr.jpg" alt="OPAL WhatsApp QR Code">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-main animated-scroll-in">
+            <div class="footer-column">
+                <h4>Les pages</h4>
+                <ul>
+                    <li><a href="#"><i class="fas fa-home"></i> Page d'accueil</a></li>
+                    <li><a href="#"><i class="fas fa-book-open"></i> Compréhension écrite</a></li>
+                    <li><a href="#"><i class="fas fa-headphones"></i> Compréhension orale</a></li>
+                    <li><a href="#"><i class="fas fa-pen-alt"></i> Expression écrite</a></li>
+                    <li><a href="#"><i class="fas fa-microphone-alt"></i> Expression orale</a></li>
+                    <li><a href="#"><i class="fas fa-info-circle"></i> Politique de retour et de remboursement</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Partagez avec vos proches</h4>
+                <div class="footer-social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+                <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
+                    Plate-forme dédiée à la préparation au TCF Canada avec des tests en conditions réelles.
+                </p>
+                <div style="margin-top: 1rem;">
+                    <a href="#" style="font-size: 0.9rem;"><i class="fas fa-info-circle"></i> À propos de nous</a>
+                    <br>
+                    <a href="#" style="font-size: 0.9rem;"><i class="fas fa-question-circle"></i> Foire Aux Questions</a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>Nous acceptons</h4>
+                <div class="footer-payments">
+                    <img src="https://via.placeholder.com/100x60.png?text=Orange+Money" alt="Orange Money">
+                    <img src="https://via.placeholder.com/100x60.png?text=Mobile+Money" alt="Mobile Money">
+                </div>
+                <a href="#" class="btn" style="margin-top: 1rem; color:white">
+                    <i class="fas fa-chevron-right"></i> Cliquez ici
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2025 OPAL. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Function to update sub-navbar titles on small screens
+            function updateSubNavbarTitles() {
+                if (window.innerWidth <= 1024) {
+                    const subNavLinks = document.querySelectorAll('.sub-navbar a');
+                    const titles = ['CO', 'CE', 'EE', 'EO'];
+                    subNavLinks.forEach((link, i) => {
+                        const icon = link.querySelector('i');
+                        const isDropdown = link.classList.contains('dropdown-toggle');
+                        if (titles[i] && !isDropdown) {
+                            link.textContent = '';
+                            if (icon) link.appendChild(icon);
+                            const textNode = document.createTextNode(titles[i]);
+                            link.appendChild(textNode);
+                        }
+                    });
+                } else {
+                    const subNavLinks = document.querySelectorAll('.sub-navbar a');
+                    const originalTitles = ['EXPRESSION ÉCRITE', 'EXPRESSION ORALE', 'COMPRÉHENSION ÉCRITE', 'COMPRÉHENSION ORALE'];
+                    subNavLinks.forEach((link, i) => {
+                        const icon = link.querySelector('i');
+                        const isDropdown = link.classList.contains('dropdown-toggle');
+                        if (originalTitles[i] && !isDropdown) {
+                            link.textContent = '';
+                            if (icon) link.appendChild(icon);
+                            const textNode = document.createTextNode(originalTitles[i]);
+                            link.appendChild(textNode);
+                        }
+                    });
+                }
+            }
+
+            updateSubNavbarTitles();
+            window.addEventListener('resize', updateSubNavbarTitles);
+
+            // Function to set the height of the spacer
+            function setSpacerHeight() {
+                const header = document.querySelector('.main-header');
+                const spacer = document.querySelector('.header-spacer');
+                if (header && spacer) {
+                    spacer.style.height = `${header.offsetHeight}px`;
+                }
+            }
+            setSpacerHeight();
+            window.addEventListener('resize', setSpacerHeight);
+
+            // Scroll animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, {
+                threshold: 0.2
+            });
+
+            document.querySelectorAll('.animated-scroll-in').forEach(section => {
+                observer.observe(section);
+            });
+            
+            // Dropdown functionality
+            const dropdowns = document.querySelectorAll('.dropdown-toggle');
+
+            dropdowns.forEach(dropdown => {
+                dropdown.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const dropdownContent = dropdown.nextElementSibling;
+                    const isVisible = dropdownContent.style.display === 'block';
+
+                    document.querySelectorAll('.dropdown-content').forEach(content => {
+                        if (content !== dropdownContent) {
+                            content.style.display = 'none';
+                        }
+                    });
+
+                    dropdownContent.style.display = isVisible ? 'none' : 'block';
+                });
+            });
+
+            window.addEventListener('click', (event) => {
+                if (!event.target.closest('.dropdown')) {
+                    document.querySelectorAll('.dropdown-content').forEach(content => {
+                        content.style.display = 'none';
+                    });
+                }
+            });
+
+            // Horizontal scrolling logic with arrow visibility
+            const servicesCarousel = document.getElementById('services-carousel');
+            const leftArrow = document.getElementById('left-arrow');
+            const rightArrow = document.getElementById('right-arrow');
+
+            const checkHorizontalScroll = () => {
+                const maxScrollLeft = servicesCarousel.scrollWidth - servicesCarousel.clientWidth;
+                leftArrow.classList.toggle('hidden', servicesCarousel.scrollLeft === 0);
+                rightArrow.classList.toggle('hidden', Math.ceil(servicesCarousel.scrollLeft) >= maxScrollLeft);
+            };
+
+            leftArrow.addEventListener('click', () => {
+                servicesCarousel.scrollBy({ left: -300, behavior: 'smooth' });
+            });
+
+            rightArrow.addEventListener('click', () => {
+                servicesCarousel.scrollBy({ left: 300, behavior: 'smooth' });
+            });
+
+            servicesCarousel.addEventListener('scroll', checkHorizontalScroll);
+            window.addEventListener('resize', checkHorizontalScroll);
+            checkHorizontalScroll(); // Initial check
+
+            // Vertical scrolling logic with arrow visibility
+            const verticalScroll = document.getElementById('vertical-scroll');
+            const upArrow = document.getElementById('up-arrow');
+            const downArrow = document.getElementById('down-arrow');
+
+            const checkVerticalScroll = () => {
+                const maxScrollTop = verticalScroll.scrollHeight - verticalScroll.clientHeight;
+                upArrow.classList.toggle('hidden', verticalScroll.scrollTop === 0);
+                downArrow.classList.toggle('hidden', Math.ceil(verticalScroll.scrollTop) >= maxScrollTop);
+            };
+
+            upArrow.addEventListener('click', () => {
+                verticalScroll.scrollBy({ top: -150, behavior: 'smooth' });
+            });
+
+            downArrow.addEventListener('click', () => {
+                verticalScroll.scrollBy({ top: 150, behavior: 'smooth' });
+            });
+
+            verticalScroll.addEventListener('scroll', checkVerticalScroll);
+            window.addEventListener('resize', checkVerticalScroll);
+            checkVerticalScroll(); // Initial check
+
+            // Hamburger menu functionality
+            const hamburgerMenu = document.getElementById('hamburger-menu');
+            const sidebar = document.getElementById('sidebar');
+            const sidebarOverlay = document.getElementById('sidebar-overlay');
+            const sidebarLinks = document.querySelector('#sidebar .sidebar-links');
+
+            function toggleSidebar() {
+                const isOpen = sidebar.classList.toggle('open');
+                hamburgerMenu.classList.toggle('active', isOpen);
+                sidebarOverlay.classList.toggle('visible', isOpen);
+            }
+
+            hamburgerMenu.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleSidebar();
+            });
+
+            sidebarOverlay.addEventListener('click', toggleSidebar);
+
+            // Close sidebar when a link is clicked inside it
+            sidebarLinks.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') {
+                    toggleSidebar();
+                }
+            });
+            
+            // Prevent clicks inside the sidebar from closing it
+            sidebar.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+        });
+    </script>
+</body>
+</html>
